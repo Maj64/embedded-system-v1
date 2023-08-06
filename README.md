@@ -13,15 +13,20 @@ npm run start
 
 1. Clone project
 
-```javascript
-git clone "https://github.com/Maj64/embedded-system-v1.git" // clone project code
-git checkout -b [new-branch] // create new branch to code
+```git
+# clone project code
+git clone "https://github.com/Maj64/embedded-system-v1.git"
+# create new branch to code
+git checkout -b [new-branch]
 ```
 
 2. Up code
 
-```javascript
+```git
+# update code changes
 git add .
+# commit code
 git commit -m "[type]: [message content]"
+# up code to repo
 git push
 ```
