@@ -11,7 +11,7 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^ [A-Za-z0-9+_.-]+@ (.+)$/;
 const REGISTER_URL = '/register'
 
-export default function Form() {
+export default function Register() {
     const userRef = useRef();
     const errRef = useRef();
 
