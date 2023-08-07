@@ -1,6 +1,6 @@
 import { Switch, Route, Link } from "react-router-dom";
 
-import { Devices, Home, Login } from "./pages";
+import { Devices, Home, Login, Register } from "./pages";
 
 function App() {
   return (
@@ -31,6 +31,9 @@ function App() {
           </Route>
           <Route path="/">
             <Home />
+          </Route>
+          <Route path="/register">
+            <Register />
           </Route>
         </Switch>
       </div>
