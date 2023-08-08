@@ -134,10 +134,10 @@ export default function Login() {
                 </button>
               </form>
               <p>
-                Don't have an account?<br />
+                Don't have any account?<br />
                 <span className='linking'>
                   <a href="/register">Create account</a> <br />
-                  <a href="#">Forgot for password?</a>
+                  <a href="#">Forgot your password?</a>
                 </span>
               </p>
             </div>
