@@ -72,25 +72,23 @@ const Sidebar = ({ open }) => {
     return (
         <Nav className={`bg-dark sidebar-container flex-column ${open && "sidebar-container-align-center"}`}>
             <Nav.Item>
-                <div className="sidebar-header p-4" style={{ color: "white" }}>
-                    My app
-                </div>
+                <div className="sidebar-header p-5" style={{ color: "white" }}></div>
             </Nav.Item>
             <Nav.Item>
                 <Link to="/dashboard" className="text-decoration-none sidebar-item">
-                    <FontAwesomeIcon icon={faHome} />
+                    <FontAwesomeIcon icon={faHome} width={20} />
                     {!open && "Dashboard"}
                 </Link>
             </Nav.Item>
             <Nav.Item>
                 <Link to="/users" className="text-decoration-none sidebar-item">
-                    <FontAwesomeIcon icon={faUser} />
+                    <FontAwesomeIcon icon={faUser} width={20} />
                     {!open && "Users"}
                 </Link>
             </Nav.Item>
             <Nav.Item>
                 <Link to="/devices" className="text-decoration-none sidebar-item">
-                    <FontAwesomeIcon icon={faCog} />
+                    <FontAwesomeIcon icon={faCog} width={20} />
                     {!open && "Devices"}
                 </Link>
             </Nav.Item>

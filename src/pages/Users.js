@@ -6,7 +6,7 @@ const Devices = () => {
     return (
         <div className="device-container">
             <Container>
-                <TableComponent title={"Devices"} />
+                <TableComponent title={"Users"} />
             </Container>
         </div>
     );

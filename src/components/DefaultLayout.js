@@ -22,7 +22,7 @@ const Layout = ({ children }) => {
                 </Col>
                 <Col md={sidebarOpen ? 11 : 10} className="content">
                     <NavbarCustom toggleSidebar={toggleSidebar} />
-                    {children}
+                    <div className="p-2">{children}</div>
                 </Col>
             </Row>
         </Container>

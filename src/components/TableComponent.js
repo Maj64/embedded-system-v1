@@ -11,7 +11,7 @@ const data = [
     // Add more sample data as needed
 ];
 
-const TableComponent = () => {
+const TableComponent = ({ title }) => {
     const [items, setItems] = useState(data);
     const [showModal, setShowModal] = useState(false);
     const [selectedItem, setSelectedItem] = useState({});
@@ -44,7 +44,7 @@ const TableComponent = () => {
 
     return (
         <div>
-            <h1>Table Component</h1>
+            <h1>Table {title}</h1>
             <Table striped bordered hover>
                 <thead>
                     <tr>

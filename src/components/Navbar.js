@@ -16,15 +16,19 @@ const NavbarCustom = ({ toggleSidebar }) => {
             </Navbar.Collapse>
             <Container>
                 <Navbar.Brand className="navbar-brand-container">
-                    <Link className="text-decoration-none mx-1" to="/">
+                    <Link className="text-decoration-none text-dark fw-bold mx-1" to="/">
                         My App
                     </Link>
                     <Navbar.Toggle className="navbar-toggle-container" aria-controls="basic-navbar-nav" />
                 </Navbar.Brand>
                 <Navbar.Collapse>
                     <Nav className="me-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#link">Link</Nav.Link>
+                        <Link className="text-decoration-none text-dark mx-1" to="/users">
+                            Users
+                        </Link>
+                        <Link className="text-decoration-none text-dark mx-1" to="/devices">
+                            Devices
+                        </Link>
                     </Nav>
                     <Nav>
                         <NavDropdown
