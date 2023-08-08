@@ -62,7 +62,7 @@
 
 import React from "react";
 import { Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faUser, faCog } from "@fortawesome/free-solid-svg-icons";
 
@@ -75,22 +75,22 @@ const Sidebar = ({ open }) => {
                 <div className="sidebar-header p-5" style={{ color: "white" }}></div>
             </Nav.Item>
             <Nav.Item>
-                <Link to="/dashboard" className="text-decoration-none sidebar-item">
+                <NavLink to="/dashboard" className="text-decoration-none sidebar-item">
                     <FontAwesomeIcon icon={faHome} width={20} />
                     {!open && "Dashboard"}
-                </Link>
+                </NavLink>
             </Nav.Item>
             <Nav.Item>
-                <Link to="/users" className="text-decoration-none sidebar-item">
+                <NavLink to="/users" className="text-decoration-none sidebar-item">
                     <FontAwesomeIcon icon={faUser} width={20} />
                     {!open && "Users"}
-                </Link>
+                </NavLink>
             </Nav.Item>
             <Nav.Item>
-                <Link to="/devices" className="text-decoration-none sidebar-item">
+                <NavLink to="/devices" className="text-decoration-none sidebar-item">
                     <FontAwesomeIcon icon={faCog} width={20} />
                     {!open && "Devices"}
-                </Link>
+                </NavLink>
             </Nav.Item>
         </Nav>
     );

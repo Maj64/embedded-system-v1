@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
     return (
         <Container fluid className="layout-container">
             <Row>
-                <Col md={sidebarOpen ? 1 : 2} className={`bg-dark sidebar te ${sidebarOpen ? "collapsed" : ""}`}>
+                <Col md={sidebarOpen ? 1 : 2} className={`bg-dark sidebar ${sidebarOpen ? "collapsed" : ""}`}>
                     <Sidebar open={sidebarOpen} />
                 </Col>
                 <Col md={sidebarOpen ? 11 : 10} className="content">

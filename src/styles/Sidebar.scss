@@ -1,5 +1,4 @@
 .sidebar-container {
-    width: 2rem;
     gap: 1rem;
 }
 
@@ -13,4 +12,8 @@
 
 .sidebar-container-align-center {
     align-items: center;
+}
+
+.active {
+    color: white;
 }

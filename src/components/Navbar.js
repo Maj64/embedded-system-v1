@@ -1,5 +1,5 @@
 // components/Navbar.js
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { Navbar, Nav, NavDropdown, Button, Container, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faCircleUser } from "@fortawesome/free-solid-svg-icons";
@@ -8,7 +8,7 @@ import "../styles/Navbar.scss";
 
 const NavbarCustom = ({ toggleSidebar }) => {
     return (
-        <Navbar expand="lg" className="bg-secondary navbar-container">
+        <Navbar expand="lg" className="shadow bg-light navbar-container">
             <Navbar.Collapse>
                 <Button variant="text" onClick={toggleSidebar}>
                     <FontAwesomeIcon icon={faBars} />
@@ -23,12 +23,12 @@ const NavbarCustom = ({ toggleSidebar }) => {
                 </Navbar.Brand>
                 <Navbar.Collapse>
                     <Nav className="me-auto">
-                        <Link className="text-decoration-none text-dark mx-1" to="/users">
+                        <NavLink className="text-decoration-none text-dark mx-1" to="/users">
                             Users
-                        </Link>
-                        <Link className="text-decoration-none text-dark mx-1" to="/devices">
+                        </NavLink>
+                        <NavLink className="text-decoration-none text-dark mx-1" to="/devices">
                             Devices
-                        </Link>
+                        </NavLink>
                     </Nav>
                     <Nav>
                         <NavDropdown
