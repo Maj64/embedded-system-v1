@@ -17,22 +17,25 @@ function App() {
             <li>
               <Link to="/devices">Devices</Link>
             </li>
+            <li>
+              <Link to="/register">Register</Link>
+            </li>
           </ul>
         </nav>
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/login">
+          <Route exact path="/login">
             <Login />
           </Route>
-          <Route path="/devices">
+          <Route exact path="/devices">
             <Devices />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/register">
+          <Route exact path="/register">
             <Register />
           </Route>
         </Switch>
