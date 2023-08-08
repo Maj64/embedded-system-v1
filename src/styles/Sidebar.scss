@@ -1,0 +1,15 @@
+.sidebar-container {
+    width: 2rem;
+    gap: 1rem;
+}
+
+.sidebar-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.sidebar-container-align-center {
+    align-items: center;
+}

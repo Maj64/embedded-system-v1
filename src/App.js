@@ -1,41 +1,19 @@
-import { Switch, Route, Link } from "react-router-dom";
-
+import { Switch, Route } from "react-router-dom";
 import { Devices, Home, Login } from "./pages";
+import { PrivateRoute } from "./components";
 
 function App() {
-  return (
-    <div className="App">
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/devices">Devices</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
+    return (
+        <div className="App">
+            {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/devices">
-            <Devices />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </div>
-  );
+            <Switch>
+                <Route exact path="/login" component={Login} />
+                <PrivateRoute exact path="/" component={Home} />
+                <PrivateRoute path="/devices" component={Devices} />
+            </Switch>
+        </div>
+    );
 }
 
 export default App;
