@@ -1,8 +1,33 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 
+
 const Login = () => {
+
+  const [userName, setUserName] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(userName)
+    axios.post('http://localhost:8000/api-auth', {
+      username: userName,
+      password: password })
+      .then (response =>{
+        // access token used for requests that requires authentication
+        console.log('token', response.data.access);
+
+        // refresh request to get a new access token when access token expires
+        console.log('refresh', response.data.refresh);
+      })
+      .catch((error) =>{
+        console.error(error)
+      });
+  }
+
   return (
     <div className="login-container">
       <Container>
@@ -18,9 +43,9 @@ const Login = () => {
                     <Form>
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label className="text-center">
-                          Email address
+                          Username
                         </Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
+                        <Form.Control type="username" placeholder="Username" onChange={e => setUserName(e.target.value)}/>
                       </Form.Group>
 
                       <Form.Group
@@ -28,7 +53,7 @@ const Login = () => {
                         controlId="formBasicPassword"
                       >
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
                       </Form.Group>
                       <Form.Group
                         className="mb-3"
@@ -41,7 +66,7 @@ const Login = () => {
                         </p>
                       </Form.Group>
                       <div className="d-grid">
-                        <Button variant="primary" type="submit">
+                        <Button variant="primary" type="submit" onClick={handleSubmit}>
                           Login
                         </Button>
                       </div>
