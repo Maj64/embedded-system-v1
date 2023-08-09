@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
-import { useHistory, Redirect, Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { loginUser, registerUser, refreshAccessToken } from "../store/features/authSlice";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -18,7 +18,7 @@ const Login = () => {
         if (isLogin) {
             history.push("/");
         }
-    }, []);
+    }, [history]);
 
     const [formData, setFormData] = useState({
         username: "",

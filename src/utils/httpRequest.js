@@ -18,7 +18,7 @@
 
 import axios from "axios";
 const httpRequest = axios.create({
-    baseURL: "https://da877906-90e8-44cf-b731-dc45744a052c.mock.pstmn.io",
+    baseURL: "https://52624c73-9f07-417f-b2a5-2b011182af0e.mock.pstmn.io",
     headers: {
         "Content-Type": "application/json",
     },

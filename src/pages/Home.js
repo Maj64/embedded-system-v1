@@ -8,8 +8,6 @@ import "../styles/Home.scss";
 const Home = () => {
     const dispatch = useDispatch();
     const token = useSelector((state) => state.auth.token);
-    const infoDevice = useSelector((state) => state.infoDevice.infoDevice);
-
     const accessToken = token?.access || localStorage.getItem("accessToken");
 
     const [result, setResult] = useState({});
@@ -21,10 +19,6 @@ const Home = () => {
                 setResult(result.payload);
             });
         }, 10000);
-
-        // setInterval(() => {
-
-        // }, 10000);
 
         return () => {
             clearInterval(intervalId);

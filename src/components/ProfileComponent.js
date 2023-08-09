@@ -2,7 +2,6 @@ import React from "react";
 import { Container, Row, Col, Card, ListGroup } from "react-bootstrap";
 
 const ProfileComponent = ({ userData }) => {
-    console.log(userData);
     return (
         <Container>
             <Row className="justify-content-center mt-5">
