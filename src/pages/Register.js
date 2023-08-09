@@ -56,31 +56,33 @@ export default function Register() {
     }, [user, pwd, matchPwd])
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
 
-        try {
-            // const response = await axios.post(
-            //     REGISTER_URL,
-            //     JSON.stringify({ user, pwd }),
-            //     {
-            //         header: { 'Content-type': 'application/json' },
-            //         withCredentials: true
-            //     }
-            // );
-            // console.log(response.data);
-            // console.log(response.accessToken);
-            // console.log(response.stringify(response));
-            setSuccess(true);
-        } catch (error) {
-            if (!error.response) {
-                setErrMsg('No Server Response');
-            } else if (error.response?.status === 409) {
-                errMsg('Username Taken');
-            } else {
-                errMsg('Registration Failed')
-            }
-            errRef.current.focus();
-        }
+        e.preventDefault();
+        // console.log(user)
+        // axios.post('http://localhost:8000/api-auth', {
+        //     username: user,
+        //     password: pwd,
+        //     email: email
+        // })
+        //     .then(response => {
+        //         // access token used for requests that requires authentication
+        //         console.log('token', response.data.access);
+
+        //         // refresh request to get a new access token when access token expires
+        //         console.log('refresh', response.data.refresh);
+        //     })
+        //     .catch((error) => {
+        //         console.error(error)
+        //         if (!error.response) {
+        //             setErrMsg('No Server Response');
+        //         } else if (error.response?.status === 409) {
+        //             errMsg('Username Taken');
+        //         } else {
+        //             errMsg('Registration Failed')
+        //         }
+        //         errRef.current.focus();
+        //     });
+
     }
 
     return (
@@ -203,7 +205,7 @@ export default function Register() {
                                 </p>
 
                                 {/* RESIGTER BUTTON */}
-                                <button className='btn' disabled={!validName || !validPwd || !validMatch ? true : false}>
+                                <button className='btn' disabled={!validName || !validPwd || !validMatch ? true : false} onClick={handleSubmit}>
                                     Register
                                 </button>
                             </form>

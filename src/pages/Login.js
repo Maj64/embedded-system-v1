@@ -43,30 +43,6 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      // const response = await axios.post(
-      //     REGISTER_URL,
-      //     JSON.stringify({ user, pwd }),
-      //     {
-      //         header: { 'Content-type': 'application/json' },
-      //         withCredentials: true
-      //     }
-      // );
-      // console.log(response.data);
-      // console.log(response.accessToken);
-      // console.log(response.stringify(response));
-      setSuccess(true);
-    } catch (error) {
-      if (!error.response) {
-        setErrMsg('No Server Response');
-      } else if (error.response?.status === 409) {
-        errMsg('Username Taken');
-      } else {
-        errMsg('Registration Failed')
-      }
-      errRef.current.focus();
-    }
   }
 
   return (
@@ -95,17 +71,10 @@ export default function Login() {
                   onChange={(e) => setUser(e.target.value)}
                   required
                   aria-invalid={validName ? "false" : "true"}
-                  aria-describedby='uidnote'
                   onFocus={() => setUserFocus(true)}
                   onBlur={() => setUserFocus(false)}
                 >
                 </input>
-                <p id='uidnote' className={userFocus && user && !validName ? "instructions" : "offscreen"}>
-                  <FontAwesomeIcon icon={faInfoCircle} />
-                  4 to 24 characters. <br />
-                  Must begin with a letter. <br />
-                  Letters, numbers, underscores, hyphens allowed.
-                </p>
 
                 {/* PASSWORD IPNUT */}
                 <input
@@ -116,23 +85,16 @@ export default function Login() {
                   onChange={(e) => setPwd(e.target.value)}
                   required
                   aria-invalid={validPwd ? "false" : "true"}
-                  aria-describedby='pwdnote'
                   onFocus={() => setPwdFocus(true)}
                   onBlur={() => setPwdFocus(false)}
                 />
-                <p id='pwdnote' className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
-                  <FontAwesomeIcon icon={faInfoCircle} />
-                  8 to 24 characters. <br />
-                  Must include uppercase and lowercase letters,
-                  a number and a special characters. <br />
-                  Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
-                </p>
 
                 {/* LOGIN BUTTON */}
                 <button className='btn' disabled={!validName || !validPwd ? true : false}>
                   Login
                 </button>
               </form>
+
               <p>
                 Don't have any account?<br />
                 <span className='linking'>
