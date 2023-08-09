@@ -11,7 +11,7 @@ export const fetchDevice = createAsyncThunk("device/fetchDevice", async (token) 
     return response.data;
 });
 export const putDevice = createAsyncThunk("device/putDevice", async (data, token) => {
-    const response = await httpRequest.get("/devices/3a4d7cdf-4b13-4616-9213-30e02b028646", data, {
+    const response = await httpRequest.post("/devices/3a4d7cdf-4b13-4616-9213-30e02b028646", data, {
         headers: {
             Authorization: `Bearer ${token}`,
         },

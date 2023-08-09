@@ -26,8 +26,8 @@ const Devices = () => {
     };
 
     const handleWatering = async () => {
-        await httpRequest.put(`/devices/3a4d7cdf-4b13-4616-9213-30e02b028646/manual-watering`, {
-            params: {
+        await httpRequest.put(`/devices/3a4d7cdf-4b13-4616-9213-30e02b028646/manual-watering?Authorization=Bearer ${accessToken}`, {
+            headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
         });
