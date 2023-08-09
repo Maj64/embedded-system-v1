@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import { fetchPosts } from "./redux/postSlice";
 import { fetchPosts } from "../store/features/postSlice";
 import { PaginationTable } from "../components";
 import { Container, Row } from "react-bootstrap";

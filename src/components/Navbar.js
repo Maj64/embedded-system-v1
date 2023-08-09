@@ -1,6 +1,6 @@
 // components/Navbar.js
 import { NavLink, Link } from "react-router-dom";
-import { Navbar, Nav, NavDropdown, Button, Container, Row, Col } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Button, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
