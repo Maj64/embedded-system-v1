@@ -2,11 +2,11 @@
 import { NavLink, Link, useHistory } from "react-router-dom";
 import { Navbar, Nav, NavDropdown, Button, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { logout } from "../store/features/authSlice";
 import { useDispatch } from "react-redux";
 
-import "../styles/Navbar.scss";
+// import "../styles/Navbar.scss";
 
 const NavbarCustom = ({ toggleSidebar }) => {
     const dispatch = useDispatch();
@@ -18,15 +18,11 @@ const NavbarCustom = ({ toggleSidebar }) => {
     const handleLogout = () => {
         dispatch(logout());
         localStorage.clear();
+        history.push("/login");
     };
 
     return (
         <Navbar expand="lg" className="shadow bg-light navbar-container">
-            <Navbar.Collapse>
-                <Button variant="text" onClick={toggleSidebar}>
-                    <FontAwesomeIcon icon={faBars} />
-                </Button>
-            </Navbar.Collapse>
             <Container>
                 <Navbar.Brand className="navbar-brand-container">
                     <Link className="text-decoration-none text-dark fw-bold mx-1" to="/">
@@ -39,12 +35,12 @@ const NavbarCustom = ({ toggleSidebar }) => {
                         {/* <NavLink className="text-decoration-none text-dark mx-1" to="/users">
                             Users
                         </NavLink>
+                        <NavLink className="text-decoration-none text-dark mx-1" to="/posts">
+                        Posts
+                    </NavLink> */}
                         <NavLink className="text-decoration-none text-dark mx-1" to="/devices">
                             Devices
                         </NavLink>
-                        <NavLink className="text-decoration-none text-dark mx-1" to="/posts">
-                            Posts
-                        </NavLink> */}
                     </Nav>
                     <Nav>
                         <NavDropdown
