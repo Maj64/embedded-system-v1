@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 
@@ -16,6 +18,25 @@ const Login = () => {
         e.preventDefault();
         dispatch(loginUser({ username: "user1", password: "password" }));
     };
+    /*
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log(userName)
+      axios.post('http://localhost:8000/api-auth', {
+        username: userName,
+        password: password })
+        .then (response =>{
+          // access token used for requests that requires authentication
+          console.log('token', response.data.access);
+  
+          // refresh request to get a new access token when access token expires
+          console.log('refresh', response.data.refresh);
+        })
+        .catch((error) =>{
+          console.error(error)
+        });
+    }
+    */
 
     return (
         <div className="login-container">
