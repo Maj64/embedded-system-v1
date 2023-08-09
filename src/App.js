@@ -1,5 +1,5 @@
 import { Switch, Route } from "react-router-dom";
-import { Devices, Home, Login, Users } from "./pages";
+import { Devices, Home, Login, Users, PostList } from "./pages";
 import { PrivateRoute } from "./components";
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
                 <PrivateRoute exact path="/dashboard" component={Home} />
                 <PrivateRoute path="/devices" component={Devices} />
                 <PrivateRoute path="/users" component={Users} />
+                <PrivateRoute path="/posts" component={PostList} />
             </Switch>
         </div>
     );
