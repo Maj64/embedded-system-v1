@@ -29,6 +29,9 @@ const NavbarCustom = ({ toggleSidebar }) => {
                         <NavLink className="text-decoration-none text-dark mx-1" to="/devices">
                             Devices
                         </NavLink>
+                        <NavLink className="text-decoration-none text-dark mx-1" to="/posts">
+                            Posts
+                        </NavLink>
                     </Nav>
                     <Nav>
                         <NavDropdown
