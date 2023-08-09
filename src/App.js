@@ -12,7 +12,7 @@ function App() {
                 <PrivateRoute exact path="/" component={Home} />
                 <PrivateRoute exact path="/dashboard" component={Home} />
                 <PrivateRoute path="/devices" component={Devices} />
-                <PrivateRoute path="/users" component={Users} />
+                <PrivateRoute path="/profile" component={Users} />
                 <PrivateRoute path="/posts" component={PostList} />
             </Switch>
         </div>

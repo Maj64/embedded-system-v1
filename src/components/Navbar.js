@@ -1,12 +1,25 @@
 // components/Navbar.js
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useHistory } from "react-router-dom";
 import { Navbar, Nav, NavDropdown, Button, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { logout } from "../store/features/authSlice";
+import { useDispatch } from "react-redux";
 
 import "../styles/Navbar.scss";
 
 const NavbarCustom = ({ toggleSidebar }) => {
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    const handleShowProfile = () => {
+        history.push("/profile");
+    };
+    const handleLogout = () => {
+        dispatch(logout());
+        localStorage.clear();
+    };
+
     return (
         <Navbar expand="lg" className="shadow bg-light navbar-container">
             <Navbar.Collapse>
@@ -23,7 +36,7 @@ const NavbarCustom = ({ toggleSidebar }) => {
                 </Navbar.Brand>
                 <Navbar.Collapse>
                     <Nav className="me-auto">
-                        <NavLink className="text-decoration-none text-dark mx-1" to="/users">
+                        {/* <NavLink className="text-decoration-none text-dark mx-1" to="/users">
                             Users
                         </NavLink>
                         <NavLink className="text-decoration-none text-dark mx-1" to="/devices">
@@ -31,21 +44,29 @@ const NavbarCustom = ({ toggleSidebar }) => {
                         </NavLink>
                         <NavLink className="text-decoration-none text-dark mx-1" to="/posts">
                             Posts
-                        </NavLink>
+                        </NavLink> */}
                     </Nav>
                     <Nav>
                         <NavDropdown
                             title={
                                 <span className="navbar-user-container">
-                                    User 1 <FontAwesomeIcon icon={faCircleUser} className="navbar-user--icon" />
+                                    My Account <FontAwesomeIcon icon={faCircleUser} className="navbar-user--icon" />
                                 </span>
                             }
                             id="basic-nav-dropdown"
                             align={"end"}
                         >
-                            <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                            <NavDropdown.Item>
+                                <Button variant="text" type="submit" onClick={handleShowProfile}>
+                                    Profile
+                                </Button>
+                            </NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
+                            <NavDropdown.Item>
+                                <Button variant="text" type="submit" onClick={handleLogout}>
+                                    Logout
+                                </Button>
+                            </NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>

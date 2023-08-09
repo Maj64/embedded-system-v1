@@ -9,7 +9,7 @@ const Devices = () => {
     const token = useSelector((state) => state.auth.token);
     const userData = useSelector((state) => state.user.user);
 
-    const accessToken = token.access || localStorage.getItem("accessToken");
+    const accessToken = token?.access || localStorage.getItem("accessToken");
 
     useEffect(() => {
         dispatch(fetchUser(accessToken));
