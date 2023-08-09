@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
@@ -12,17 +12,33 @@ const Devices = () => {
     const accessToken = token?.access || localStorage.getItem("accessToken");
     const deviceData = useSelector((state) => state.device.device);
 
+    const [time_interval, setTimeWater] = useState(deviceData.time_interval);
+
     useEffect(() => {
         dispatch(fetchDevice(accessToken));
     }, [accessToken, dispatch]);
 
+    const handleInputChange = (e) => {
+        setTimeWater(e.target.value);
+    };
+
     const handleWateringModeChange = (event) => {
-        dispatch(
-            putDevice(accessToken, {
-                ...deviceData,
-                watering_mode: event.target.value,
-            })
-        );
+        if (event.target.value === "TIM") {
+            dispatch(
+                putDevice(accessToken, {
+                    ...deviceData,
+                    watering_mode: event.target.value,
+                    time_interval,
+                })
+            );
+        } else {
+            dispatch(
+                putDevice(accessToken, {
+                    ...deviceData,
+                    watering_mode: event.target.value,
+                })
+            );
+        }
     };
 
     const handleWatering = async () => {
@@ -60,6 +76,14 @@ const Devices = () => {
                                         </Form.Select>
                                     </Card.Text>
                                 </Card.Body>
+                                {deviceData.watering_mode === "TIM" && (
+                                    <Card.Body>
+                                        <Form.Group className="mb-3">
+                                            <Form.Label>Time interval</Form.Label>
+                                            <Form.Control type="text" name="text" value={time_interval} onChange={handleInputChange} />
+                                        </Form.Group>
+                                    </Card.Body>
+                                )}
                                 <Card.Body>
                                     <Button variant="primary" type="submit" onClick={handleWatering}>
                                         Water
