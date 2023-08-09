@@ -3,7 +3,7 @@ import httpRequest from "../../utils/httpRequest";
 
 // Define your async thunk action creator to fetch user
 export const fetchInfoDevice = createAsyncThunk("user/fetchInfoDevices", async (token) => {
-    const response = await httpRequest.get("/device-readings/3a4d7cdf-4b13-4616-9213-30e02b028646", {
+    const response = await httpRequest.get("/device-readings/ffc5007b-d629-4c0f-9711-dc9aff3630c8", {
         headers: {
             Authorization: `Bearer ${token}`,
         },
