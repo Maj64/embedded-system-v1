@@ -8,11 +8,13 @@ import Layout from "./DefaultLayout";
 const PrivateRoute = ({ component: Component, ...rest }) => {
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
+    const isLogin = localStorage.getItem("isLogin");
+
     return (
         <Route
             {...rest}
             render={(props) =>
-                isAuthenticated ? (
+                isLogin ? (
                     <Layout>
                         <Component {...props} />
                     </Layout>

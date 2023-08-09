@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect, Link } from "react-router-dom";
 import { loginUser, registerUser, refreshAccessToken } from "../store/features/authSlice";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -13,6 +12,13 @@ import { useSelector, useDispatch } from "react-redux";
 const Login = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+
+    useEffect(() => {
+        const isLogin = localStorage.getItem("isLogin");
+        if (isLogin) {
+            history.push("/");
+        }
+    }, []);
 
     const [formData, setFormData] = useState({
         username: "",
@@ -29,14 +35,13 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        dispatch(loginUser(formData));
-
         dispatch(loginUser(formData))
             .unwrap()
             .then((originalPromiseResult) => {
                 // handle result here
-                console.log(originalPromiseResult);
+                const { access: accessToken } = originalPromiseResult;
+                localStorage.setItem("accessToken", accessToken);
+                localStorage.setItem("isLogin", true);
                 history.push("/");
             })
             .catch((rejectedValueOrSerializedError) => {
@@ -44,25 +49,6 @@ const Login = () => {
                 console.log(rejectedValueOrSerializedError);
             });
     };
-    /*
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(userName)
-    axios.post('http://localhost:8000/api-auth', {
-      username: userName,
-      password: password })
-      .then (response =>{
-        // access token used for requests that requires authentication
-        console.log('token', response.data.access);
- 
-        // refresh request to get a new access token when access token expires
-        console.log('refresh', response.data.refresh);
-      })
-      .catch((error) =>{
-        console.error(error)
-      });
-  }
-  */
 
     return (
         <div className="login-container">
@@ -74,7 +60,7 @@ const Login = () => {
                             <Card.Body>
                                 <div className="mb-3 mt-md-4">
                                     <h2 className="fw-bold mb-2 text-uppercase ">Brand</h2>
-                                    <p className=" mb-5">Please enter your login and password!</p>
+                                    <p className=" mb-5">Please enter your username and password!</p>
                                     <div className="mb-3">
                                         <Form>
                                             <Form.Group className="mb-3" controlId="formBasicEmail">

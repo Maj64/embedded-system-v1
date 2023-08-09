@@ -1,36 +1,23 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchPosts } from "../store/features/postSlice";
 import { Container } from "react-bootstrap";
-import { TableComponent } from "../components";
+import { ProfileComponent } from "../components";
+import { fetchUser } from "../store/features/userSlice";
 
 const Devices = () => {
     const dispatch = useDispatch();
-    const posts = useSelector((state) => state.posts.posts);
-    const status = useSelector((state) => state.posts.status);
-    const error = useSelector((state) => state.posts.error);
+    const token = useSelector((state) => state.auth.token);
+    const userData = useSelector((state) => state.user.user);
+
+    const accessToken = token.access || localStorage.getItem("accessToken");
 
     useEffect(() => {
-        if (status === "idle") {
-            dispatch(fetchPosts());
-        }
-    }, [status, dispatch]);
-
-    if (status === "loading") {
-        return <div>Loading...</div>;
-    }
-
-    if (status === "failed") {
-        return <div>Error: {error}</div>;
-    }
-
-    const itemsPerPage = 5;
+        dispatch(fetchUser(accessToken));
+    }, [accessToken, dispatch]);
 
     return (
         <div className="device-container">
-            <Container>
-                <TableComponent data={posts} itemsPerPage={itemsPerPage} title={"Users"} />
-            </Container>
+            <Container>{userData && <ProfileComponent userData={userData} />}</Container>
         </div>
     );
 };
