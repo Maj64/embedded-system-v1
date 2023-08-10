@@ -26,7 +26,7 @@ export const infoDeviceSlice = createSlice({
             })
             .addCase(fetchInfoDevice.fulfilled, (state, action) => {
                 state.status = "succeeded";
-                state.infoDevice = action.payload; // Corrected line
+                state.device = action.payload; // Corrected line
             })
             .addCase(fetchInfoDevice.rejected, (state, action) => {
                 state.status = "failed";

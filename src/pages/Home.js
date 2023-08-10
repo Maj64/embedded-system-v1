@@ -18,7 +18,7 @@ const Home = () => {
             dispatch(fetchInfoDevice(accessToken)).then((result) => {
                 setResult(result.payload);
             });
-        }, 10000);
+        }, 3000);
 
         return () => {
             clearInterval(intervalId);

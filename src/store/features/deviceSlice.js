@@ -3,17 +3,19 @@ import httpRequest from "../../utils/httpRequest";
 
 // Define your async thunk action creator to fetch InfoDevice
 export const fetchDevice = createAsyncThunk("device/fetchDevice", async (token) => {
-    const response = await httpRequest.get("/devices/3a4d7cdf-4b13-4616-9213-30e02b028646", {
+    const response = await httpRequest.get("/devices/ffc5007b-d629-4c0f-9711-dc9aff3630c8", {
         headers: {
             Authorization: `Bearer ${token}`,
         },
     });
     return response.data;
 });
-export const putDevice = createAsyncThunk("device/putDevice", async (data, token) => {
-    const response = await httpRequest.post("/devices/3a4d7cdf-4b13-4616-9213-30e02b028646", data, {
+export const putDevice = createAsyncThunk("device/putDevice", async (data) => {
+    const accessToken = data.token;
+    delete data.token; 
+    const response = await httpRequest.put("/devices/ffc5007b-d629-4c0f-9711-dc9aff3630c8", data, {
         headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${accessToken}`,
         },
     });
     return response.data;
@@ -34,7 +36,7 @@ export const deviceSlice = createSlice({
             })
             .addCase(fetchDevice.fulfilled, (state, action) => {
                 state.status = "succeeded";
-                state.infoDevice = action.payload; // Corrected line
+                state.device = action.payload; // Corrected line
             })
             .addCase(fetchDevice.rejected, (state, action) => {
                 state.status = "failed";

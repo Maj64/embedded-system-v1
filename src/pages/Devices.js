@@ -11,38 +11,40 @@ const Devices = () => {
     const token = useSelector((state) => state.auth.token);
     const accessToken = token?.access || localStorage.getItem("accessToken");
     const deviceData = useSelector((state) => state.device.device);
-
-    const [time_interval, setTimeWater] = useState(deviceData.time_interval);
+    const [watering_mode, setWateringMode] = useState(deviceData?.watering_mode);
+    const [time_interval, setTimeWater] = useState(deviceData?.time_interval);
 
     useEffect(() => {
-        dispatch(fetchDevice(accessToken));
+        setWateringMode(deviceData?.watering_mode);
+        setTimeWater(deviceData?.time_interval);
+      }, [deviceData]);
+
+    useEffect(() => {
+        dispatch(fetchDevice(accessToken))
     }, [accessToken, dispatch]);
 
     const handleInputChange = (e) => {
         setTimeWater(e.target.value);
     };
 
+    const handleSelectChange = (e) => {
+        setWateringMode(e.target.value);
+    };
+
     const handleWateringModeChange = (event) => {
-        if (event.target.value === "TIM") {
-            dispatch(
-                putDevice(accessToken, {
-                    ...deviceData,
-                    watering_mode: event.target.value,
-                    time_interval,
-                })
-            );
-        } else {
-            dispatch(
-                putDevice(accessToken, {
-                    ...deviceData,
-                    watering_mode: event.target.value,
-                })
-            );
-        }
+        dispatch(
+            putDevice({
+                ...deviceData,
+                watering_mode: watering_mode,
+                time_interval,
+                token: accessToken,
+            })
+        );
+        // dispatch(fetchDevice(accessToken));
     };
 
     const handleWatering = async () => {
-        await httpRequest.put(`/devices/3a4d7cdf-4b13-4616-9213-30e02b028646/manual-watering?Authorization=Bearer ${accessToken}`, {
+        await httpRequest.put(`/devices/ffc5007b-d629-4c0f-9711-dc9aff3630c8/manual-watering`, {}, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
@@ -68,22 +70,27 @@ const Devices = () => {
                                 <Card.Body>
                                     <Card.Text>
                                         <strong>Watering Mode:</strong>
-                                        <Form.Select aria-label="Watering Mode" value={deviceData?.watering_mode} onChange={handleWateringModeChange}>
+                                        <Form.Select aria-label="Watering Mode" value={watering_mode} onChange={handleSelectChange}>
                                             <option>Open this select menu</option>
-                                            <option value="MAN">MAN</option>
-                                            <option value="TIM">TIM</option>
-                                            <option value="ADT">ADT</option>
+                                            <option value="MAN">Manual</option>
+                                            <option value="TIM">Timed</option>
+                                            <option value="ADT">Auto</option>
                                         </Form.Select>
                                     </Card.Text>
                                 </Card.Body>
-                                {deviceData.watering_mode === "TIM" && (
+                                {watering_mode === "TIM" && (
                                     <Card.Body>
                                         <Form.Group className="mb-3">
-                                            <Form.Label>Time interval</Form.Label>
+                                            <Form.Label>Time interval (seconds)</Form.Label>
                                             <Form.Control type="text" name="text" value={time_interval} onChange={handleInputChange} />
                                         </Form.Group>
                                     </Card.Body>
                                 )}
+                                <Card.Body>
+                                    <Button variant="primary" type="submit" onClick={handleWateringModeChange}>
+                                        Update Watering Mode
+                                    </Button>
+                                </Card.Body>
                                 <Card.Body>
                                     <Button variant="primary" type="submit" onClick={handleWatering}>
                                         Water
