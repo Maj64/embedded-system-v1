@@ -21,13 +21,14 @@ export const options = {
 export default function ChartComponent({ infoDevice }) {
     console.log(infoDevice.results);
     const data = infoDevice?.results || [];
-    const temArr = data.map((item) => item.temperature);
-    const humArr = data.map((item) => item.humidity);
-    const briArr = data.map((item) => item.brightness);
-    const timeArr = data.map((item) => item.timestamp);
+    const temArr = data.map((item) => item.temperature).reverse();
+    const humArr = data.map((item) => item.humidity).reverse();
+    const briArr = data.map((item) => item.brightness).reverse();
+    const timeArr = data.map((item) => item.timestamp).reverse();
 
+    
     for (var i = 0; i < timeArr.length; i++) {
-        timeArr[i] = moment(timeArr[i], "YYYY-MM-DD HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");
+        timeArr[i] = moment(timeArr[i]).format("YYYY-MM-DD HH:mm:ss");
     }
 
     const labels = timeArr;
